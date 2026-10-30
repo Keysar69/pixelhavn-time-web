@@ -1,6 +1,6 @@
 // Generated at build time. Do not edit.
-const CACHE = 'pixelhavn-ffaa1a2c305c';
-const FILES = ["./","apple-touch-icon.png","capacitorDriver-CWor7FLy.js","html2canvas-C02blViA.js","icon-192.png","icon-512.png","icon-maskable-512.png","icon.svg","index-Bzr89El0.js","index-DekwjzFG.css","index.es-Bc7KaCAF.js","index.html","inter-latin-400-normal-C38fXH4l.woff2","inter-latin-400-normal-CyCys3Eg.woff","inter-latin-500-normal-BL9OpVg8.woff","inter-latin-500-normal-Cerq10X2.woff2","inter-latin-600-normal-CiBQ2DWP.woff","inter-latin-600-normal-LgqL8muc.woff2","inter-latin-700-normal-BLAVimhd.woff","inter-latin-700-normal-Yt3aPRUw.woff2","manifest.webmanifest","purify.es-CmFH7t8M.js","rolldown-runtime-BrVfq_k5.js","silkscreen-latin-400-normal-CtPo2yA5.woff2","silkscreen-latin-400-normal-D0DfPJut.woff","silkscreen-latin-700-normal-BjMPLkh0.woff","silkscreen-latin-700-normal-CSE2nhgM.woff2","sql-wasm-browser-D8L_vcME.js","sql-wasm.wasm","sqljsDriver-LCTzLZ2A.js","supabaseBackend-Cs_HazgF.js","web-BFsUQH6N.js","web-C7OgUZLG.js","web-DDuA5w2P.js","web-DkCFxSpJ.js"];
+const CACHE = 'pixelhavn-debcbc37e254';
+const FILES = ["./","apple-touch-icon.png","capacitorDriver-BIwI31FX.js","html2canvas-C02blViA.js","icon-192.png","icon-512.png","icon-maskable-512.png","icon.svg","index-C094Xro9.js","index-dFNbs52o.css","index.es-shZQK89q.js","index.html","inter-latin-400-normal-C38fXH4l.woff2","inter-latin-400-normal-CyCys3Eg.woff","inter-latin-500-normal-BL9OpVg8.woff","inter-latin-500-normal-Cerq10X2.woff2","inter-latin-600-normal-CiBQ2DWP.woff","inter-latin-600-normal-LgqL8muc.woff2","inter-latin-700-normal-BLAVimhd.woff","inter-latin-700-normal-Yt3aPRUw.woff2","manifest.webmanifest","purify.es-CmFH7t8M.js","rolldown-runtime-BrVfq_k5.js","silkscreen-latin-400-normal-CtPo2yA5.woff2","silkscreen-latin-400-normal-D0DfPJut.woff","silkscreen-latin-700-normal-BjMPLkh0.woff","silkscreen-latin-700-normal-CSE2nhgM.woff2","sql-wasm-browser-173ZQI7g.js","sql-wasm.wasm","sqljsDriver-fgwe4R4R.js","supabaseBackend-C4tD_80-.js","web-DOTbMpAd.js","web-WEDAyQu3.js","web-_qOxCEf3.js","web-rPPWxoSa.js"];
 self.addEventListener('install', (e) => {
   // Fetch every file fresh for this version (the query string skips stale browser/CDN copies
   // of files that keep their name between versions, such as the icons) and store it under its plain name.
@@ -8,7 +8,7 @@ self.addEventListener('install', (e) => {
     caches.open(CACHE).then((c) =>
       Promise.all(
         FILES.map((f) =>
-          fetch(f + (f.includes('?') ? '&' : '?') + 'v=ffaa1a2c305c', { cache: 'reload' }).then((r) => {
+          fetch(f + (f.includes('?') ? '&' : '?') + 'v=debcbc37e254', { cache: 'reload' }).then((r) => {
             if (!r.ok) throw new Error(f + ' ' + r.status);
             return c.put(f, r);
           }),
