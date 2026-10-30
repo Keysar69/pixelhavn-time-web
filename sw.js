@@ -1,6 +1,6 @@
 // Generated at build time. Do not edit.
-const CACHE = 'pixelhavn-e713789923fe';
-const FILES = ["./","apple-touch-icon.png","capacitorDriver-Cns8FPK7.js","html2canvas-C02blViA.js","icon-192.png","icon-512.png","icon-maskable-512.png","icon.svg","index-CGS0UKFZ.css","index-CxybyHWV.js","index.es-DJvfcns4.js","index.html","inter-latin-400-normal-C38fXH4l.woff2","inter-latin-400-normal-CyCys3Eg.woff","inter-latin-500-normal-BL9OpVg8.woff","inter-latin-500-normal-Cerq10X2.woff2","inter-latin-600-normal-CiBQ2DWP.woff","inter-latin-600-normal-LgqL8muc.woff2","inter-latin-700-normal-BLAVimhd.woff","inter-latin-700-normal-Yt3aPRUw.woff2","manifest.webmanifest","purify.es-CmFH7t8M.js","rolldown-runtime-BrVfq_k5.js","silkscreen-latin-400-normal-CtPo2yA5.woff2","silkscreen-latin-400-normal-D0DfPJut.woff","silkscreen-latin-700-normal-BjMPLkh0.woff","silkscreen-latin-700-normal-CSE2nhgM.woff2","sql-wasm-browser-OtCrDp4Z.js","sql-wasm.wasm","sqljsDriver-a1r1jNH7.js","web-BUu7X6M7.js","web-Dk2GGUhD.js","web-Ek4MOIG0.js","web-prm0KMyf.js"];
+const CACHE = 'pixelhavn-7d8cc2bfef72';
+const FILES = ["./","apple-touch-icon.png","capacitorDriver-EIdShbUw.js","html2canvas-C02blViA.js","icon-192.png","icon-512.png","icon-maskable-512.png","icon.svg","index-BtlgAX7G.js","index-DekwjzFG.css","index.es-CSW0bmoB.js","index.html","inter-latin-400-normal-C38fXH4l.woff2","inter-latin-400-normal-CyCys3Eg.woff","inter-latin-500-normal-BL9OpVg8.woff","inter-latin-500-normal-Cerq10X2.woff2","inter-latin-600-normal-CiBQ2DWP.woff","inter-latin-600-normal-LgqL8muc.woff2","inter-latin-700-normal-BLAVimhd.woff","inter-latin-700-normal-Yt3aPRUw.woff2","manifest.webmanifest","purify.es-CmFH7t8M.js","rolldown-runtime-BrVfq_k5.js","silkscreen-latin-400-normal-CtPo2yA5.woff2","silkscreen-latin-400-normal-D0DfPJut.woff","silkscreen-latin-700-normal-BjMPLkh0.woff","silkscreen-latin-700-normal-CSE2nhgM.woff2","sql-wasm-browser-DZ49rjbD.js","sql-wasm.wasm","sqljsDriver-zUV9e85M.js","supabaseBackend-BAGrg17J.js","web-6dxl2vEe.js","web-Bh9kGkW8.js","web-BhKn4og-.js","web-Ciay_CNJ.js"];
 self.addEventListener('install', (e) => {
   // Fetch every file fresh for this version (the query string skips stale browser/CDN copies
   // of files that keep their name between versions, such as the icons) and store it under its plain name.
@@ -8,7 +8,7 @@ self.addEventListener('install', (e) => {
     caches.open(CACHE).then((c) =>
       Promise.all(
         FILES.map((f) =>
-          fetch(f + (f.includes('?') ? '&' : '?') + 'v=e713789923fe', { cache: 'reload' }).then((r) => {
+          fetch(f + (f.includes('?') ? '&' : '?') + 'v=7d8cc2bfef72', { cache: 'reload' }).then((r) => {
             if (!r.ok) throw new Error(f + ' ' + r.status);
             return c.put(f, r);
           }),
@@ -23,6 +23,21 @@ self.addEventListener('activate', (e) => {
       .then((keys) => Promise.all(keys.filter((k) => k.startsWith('pixelhavn-') && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim()),
   );
+});
+// Push notifications for schedule changes (iPhone home-screen app, desktop browsers).
+self.addEventListener('push', (e) => {
+  let d = {};
+  try { d = e.data ? e.data.json() : {}; } catch (_) { d = { title: 'PixelHavn', body: e.data ? e.data.text() : '' }; }
+  e.waitUntil(self.registration.showNotification(d.title || 'PixelHavn', {
+    body: d.body || '', tag: d.tag, icon: 'icon-192.png', badge: 'icon-192.png', data: { url: d.url || './' },
+  }));
+});
+self.addEventListener('notificationclick', (e) => {
+  e.notification.close();
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+    for (const c of list) { if ('focus' in c) { c.postMessage({ type: 'open-calendar' }); return c.focus(); } }
+    return self.clients.openWindow('./?open=calendar');
+  }));
 });
 self.addEventListener('fetch', (e) => {
   const req = e.request;
